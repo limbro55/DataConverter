@@ -5,7 +5,7 @@ on: [push, pull_request]
 
 jobs:
   build:
-    runs-on: ${'${{ matrix.os }}'}
+    runs-on: ${{ matrix.os }}
 
     strategy:
       fail-fast: false
@@ -20,10 +20,10 @@ jobs:
         uses: actions/cache@v4
         with:
           path: build/_deps
-          key: ${'${{ runner.os }}'}-deps-${'${{ hashFiles(\'CMakeLists.txt\') }}'}
+          key: ${{ runner.os }}-deps-${{ hashFiles('CMakeLists.txt') }}
 
       - name: Configure
-        run: cmake -S . -B build -DCMAKE_CXX_STANDARD=17
+        run: cmake -S . -B build -DCMAKE_CXX_STANDARD=17 -DCMAKE_BUILD_TYPE=Release
 
       - name: Build
         run: cmake --build build --config Release
@@ -35,6 +35,6 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: tests-${'${{ matrix.os }}'}
+          name: tests-${{ matrix.os }}
           path: build/Testing/
           if-no-files-found: ignore
