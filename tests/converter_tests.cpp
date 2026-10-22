@@ -13,7 +13,7 @@ TEST(Converter, CsvToJson) {
     ASSERT_EQ(result.size(), 2u);
     EXPECT_EQ(result[0]["name"], "Eva");
     EXPECT_EQ(result[1]["age"], "55"); // CSV values are strings by contract.
-    EXPECT_EQ(result[1]["name"], "2");
+    EXPECT_EQ(result[1]["name"], "Linus");
 }
 
 TEST(Converter, CsvQuotedComma) {
